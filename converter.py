@@ -94,6 +94,5 @@ if __name__ == '__main__':
 		file_name = pdf.split('./uploads/')[1]
 		temp_file = tempfile.TemporaryDirectory()
 		con.pdf_to_img(pdf, temp_file.name+'/')
-		con.img_to_pdf(temp_file.name+'/', './released/', file_name)
-		shutil.copyfile('./released/'+file_name,  './'+file_name)
+		con.img_to_pdf(temp_file.name+'/', './', file_name)
 		os.remove(pdf)
