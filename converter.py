@@ -1,5 +1,5 @@
 import cv2
-import shutil
+import re
 import tempfile
 from fpdf import FPDF
 from PIL import Image
@@ -50,11 +50,13 @@ class Converter:
 			self.invert_image(filepath, filepath)
 			images.append(filepath)
 
+		images = [int(re.findall('\d+.jpeg', i)[0].split('.jpeg')[0]) for i in images]
 		images.sort()
 
 		for i in images:
-			print('Converting images to PDF files: {}'.format(i))
-			cover = Image.open(i)
+			img = '{}'.format(i_dir+str(i)+'.jpeg')
+			print('Converting images to PDF files: {}'.format(img))
+			cover = Image.open(img)
 			width, height = cover.size
 
 			# convert pixel in mm with 1px=0.264583 mm
@@ -72,11 +74,10 @@ class Converter:
 
 			self.imgtopdf.add_page(orientation=orientation)
 
-			self.imgtopdf.image(i, 0, 0, width, height)
-
+			self.imgtopdf.image(img, 0, 0, width, height)
 
 		print('Generating combined PDF file {}'.format(o_dir + filename))
-		self.imgtopdf.output(o_dir + filename , 'F')
+		self.imgtopdf.output(o_dir + filename, 'F')
 
 	def clean_up(self, dir):
 		"""
@@ -93,6 +94,6 @@ if __name__ == '__main__':
 	for pdf in pdf_list:
 		file_name = pdf.split('./uploads/')[1]
 		temp_file = tempfile.TemporaryDirectory()
-		con.pdf_to_img(pdf, temp_file.name+'/')
-		con.img_to_pdf(temp_file.name+'/', './', file_name)
+		con.pdf_to_img(pdf, temp_file.name + '/')
+		con.img_to_pdf(temp_file.name + '/', './', file_name)
 		os.remove(pdf)
