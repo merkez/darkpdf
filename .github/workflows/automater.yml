@@ -51,9 +51,8 @@ jobs:
         run: |
           git config --global user.email "robotcuk@randommail.com"
           git config --global user.name "robotcuk"
-          git add  released/*
           git rm uploads/*.pdf
-          git commit -m "[automated message] uploaded files processed and released" uploads/* released/*
+          git commit -m "[automated message] uploaded files processed" uploads/*
           git tag -a ${{ steps.date.outputs.date }} -m "Product Update: ${{ steps.date.outputs.date }} "
           git push origin ${{ steps.date.outputs.date }}
           git push origin -f master
