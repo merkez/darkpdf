@@ -53,7 +53,7 @@ jobs:
           git config --global user.name "robotcuk"
           rm -rf uploads/*.pdf
           git add .
-          git commit -a -m "[automated message] uploaded files processed" uploads/*.pdf
+          git commit -m "[automated message] uploaded files processed" uploads/*.pdf
           git tag -a ${{ steps.date.outputs.date }} -m "Product Update: ${{ steps.date.outputs.date }} "
           git push origin ${{ steps.date.outputs.date }}
           git push origin -f master
