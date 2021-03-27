@@ -5,6 +5,7 @@ from fpdf import FPDF
 from PIL import Image
 import glob
 import os
+import sys
 from pdf2image import convert_from_path
 
 
@@ -91,6 +92,9 @@ class Converter:
 if __name__ == '__main__':
 	con = Converter()
 	pdf_list = [f for f in glob.glob("./uploads/*.pdf")]
+	if len(pdf_list)==0:
+		print('There is no given PDF Files under uploads, skipping operation...')
+		sys.exit(0)
 	for pdf in pdf_list:
 		file_name = pdf.split('./uploads/')[1]
 		temp_file = tempfile.TemporaryDirectory()
