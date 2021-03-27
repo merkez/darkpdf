@@ -16,9 +16,6 @@ class Converter:
 		Reconvert to PDF and Combine
 	"""
 
-	def __init__(self):
-		self.imgtopdf = FPDF()
-
 	def invert_image(self, i_input, i_output):
 		"""
 		:param i_input: image to be inverted
@@ -44,7 +41,7 @@ class Converter:
 		:param i_dir: images directory
 		:param o_dir: output directory
 		"""
-
+		imgtopdf = FPDF()
 		images = []
 		for filepath in glob.iglob(i_dir + '/*.jpeg'):
 			print('Inverting the images: {}'.format(filepath))
@@ -73,12 +70,12 @@ class Converter:
 			width = width if width < pdf_size[orientation]['w'] else pdf_size[orientation]['w']
 			height = height if height < pdf_size[orientation]['h'] else pdf_size[orientation]['h']
 
-			self.imgtopdf.add_page(orientation=orientation)
+			imgtopdf.add_page(orientation=orientation)
 
-			self.imgtopdf.image(img, 0, 0, width, height)
+			imgtopdf.image(img, 0, 0, width, height)
 
 		print('Generating combined PDF file {}'.format(o_dir + filename))
-		self.imgtopdf.output(o_dir + filename, 'F')
+		imgtopdf.output(o_dir + filename, 'F')
 
 	def clean_up(self, dir):
 		"""
