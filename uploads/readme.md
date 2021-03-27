@@ -1,4 +1,5 @@
 ## PDFs to Process
 
--  Upload a PDF file to invert it
--  Then it will be available under [../released](../released) folder as inverted
+-  Upload PDF files to invert 
+-  Actions will start automatically when something is changed on a file which has `pdf` extension.
+-  Color inverted files will be available on [RELEASES](https://github.com/mrtrkmnhub/darkpdf/releases) 
