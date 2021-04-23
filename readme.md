@@ -8,6 +8,23 @@ CI file runs when something is changed on files which ends with `*.pdf` under [.
 
 To run the automated tool it is enough to add PDF files to [./uploads](./uploads) then CI file will automatically start. 
 
+# How to run 
+
+
+```bash 
+$ git clone --depth 1 git@github.com:mrtrkmnhub/darkpdf.git
+$ cd darkpdf
+```
+Once you have added your PDF files to [uploads](./uploads) folder, it is time to commit and push them to master branch as shown below. 
+
+```bash 
+$ git add uploads/*
+$ git commit -m "<commit-message>" 
+$ git push origin master
+```
+
+Once you have pushed it, dark version of PDF will be available under [releases](https://github.com/mrtrkmnhub/darkpdf/releases)
+
 
 ## Example 
 
